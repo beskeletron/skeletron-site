@@ -82,7 +82,11 @@
   <header>
     <h1>SKELETRON INDUSTRIES</h1>
     <p>Autonomous AI Media & Automation Systems — Building the Future, One Line of Code at a Time</p>
-    <a href="#videos" class="btn">Watch Latest Videos</a>
+      <nav style="margin-top: 20px;">
+      <a href="/" style="color:#ff8c00;">Home</a> |
+      <a href="/blog" style="color:#ff8c00;">Blog</a> |
+      <a href="#videos" style="color:#ff8c00;">Videos</a>
+    </nav>
   </header>
   
   <div class="container">
@@ -110,23 +114,29 @@
   </footer>
 
   <script>
-    // Auto-fetch latest videos from a JSON file (we'll generate this later via controller)
-    // For now, you can manually add video IDs.
     const videoContainer = document.getElementById('videoContainer');
-    // Example placeholder videos
-    const sampleVideos = [
-      { title: "Power of Discipline", id: "yYzO4jtsb0I" },
-      { title: "Secrets of Millionaire Mindset", id: "maBAsyuOk0k" }
-    ];
-    sampleVideos.forEach(v => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
-      card.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
-        <p>${v.title}</p>
-      `;
-      videoContainer.appendChild(card);
-    });
+
+    // Fetch videos.json from the same server (Vercel serves it)
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(videos => {
+        videoContainer.innerHTML = ''; // clear placeholder
+        if (!videos.length) {
+          videoContainer.innerHTML = '<p style="color:#ccc;">No videos uploaded yet. Check back soon!</p>';
+          return;
+        }
+        videos.forEach(v => {
+          const card = document.createElement('div');
+          card.className = 'video-card';
+          card.innerHTML = `
+            <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+            <p>${v.title}</p>
+          `;
+          videoContainer.appendChild(card);
+        });
+      })
+      .catch(err => {
+        videoContainer.innerHTML = '<p style="color:#ccc;">Unable to load videos at the moment.</p>';
+        console.error('Failed to fetch videos.json:', err);
+      });
   </script>
-</body>
-</html>
