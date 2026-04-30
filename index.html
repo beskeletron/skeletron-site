@@ -1,67 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skeletron Industries</title>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #000000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            border: 2px solid #D4AF37;
-            max-width: 600px;
-            margin: 20px;
-        }
-        h1 {
-            color: #D4AF37;
-            font-size: 3rem;
-            letter-spacing: 4px;
-            margin-bottom: 0;
-            font-weight: normal;
-        }
-        .subtitle {
-            color: #FFFFFF;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
-        .line {
-            width: 80px;
-            height: 1px;
-            background: #D4AF37;
-            margin: 20px auto;
-        }
-        .footer {
-            color: #888;
-            font-size: 0.8rem;
-            margin-top: 30px;
-        }
-        a {
-            color: #D4AF37;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeletron Industries</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: auto; padding: 20px; }
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #f0c040, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p {
+      color: #ccc;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin: 40px 0 20px;
+      border-left: 4px solid #ff8c00;
+      padding-left: 15px;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #1a1a2e;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .video-card:hover { transform: scale(1.02); }
+    .video-card iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+    }
+    .video-card p {
+      padding: 10px;
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      border-top: 1px solid #222;
+      margin-top: 60px;
+    }
+    .btn {
+      display: inline-block;
+      background: #ff8c00;
+      color: #000;
+      padding: 12px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #f0c040; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>SKELETRON</h1>
-        <div class="subtitle">INDUSTRIES</div>
-        <div class="line"></div>
-        <p style="color: #ccc; font-size: 1rem;">Forging the Future of Industrial AI</p>
-        <p style="color: #888; font-size: 0.9rem;">Autonomous Systems · Logistics · Energy · Defense · Bullion</p>
-        <div class="footer">
-            <p>Stealth Mode · Est. 2026</p>
-            <p>📧 <a href="mailto:Beskeletron@skeletronindustries.in">Beskeletron@skeletronindustries.in</a></p>
-        </div>
+  <header>
+    <h1>SKELETRON INDUSTRIES</h1>
+    <p>Autonomous AI Media & Automation Systems — Building the Future, One Line of Code at a Time</p>
+    <a href="#videos" class="btn">Watch Latest Videos</a>
+  </header>
+  
+  <div class="container">
+    <h2 class="section-title" id="videos">Latest Videos</h2>
+    <div class="video-grid" id="videoContainer">
+      <!-- Videos will be inserted here dynamically -->
     </div>
+    
+    <h2 class="section-title">About</h2>
+    <p style="color:#ccc; max-width: 800px;">
+      Skeletron Industries is the home of <strong>Skeletron OS</strong> — an AI‑powered operating system that automates content creation, social media management, and beyond. Founded by Shobhit (Beskeletron), our mission is to build autonomous AI systems that work 24/7 so you don't have to.
+    </p>
+    
+    <h2 class="section-title">Connect</h2>
+    <p style="color:#ccc;">
+      📺 <a href="https://youtube.com/@beskeletron" style="color:#ff8c00;">YouTube</a> ·
+      📘 <a href="https://facebook.com/SkeletronAI" style="color:#ff8c00;">Facebook</a> ·
+      📸 <a href="https://instagram.com/beskeletron" style="color:#ff8c00;">Instagram</a> ·
+      💻 <a href="https://github.com/beskeletron" style="color:#ff8c00;">GitHub</a>
+    </p>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Skeletron Industries. All rights reserved. | skeletronindustries.in</p>
+  </footer>
+
+  <script>
+    // Auto-fetch latest videos from a JSON file (we'll generate this later via controller)
+    // For now, you can manually add video IDs.
+    const videoContainer = document.getElementById('videoContainer');
+    // Example placeholder videos
+    const sampleVideos = [
+      { title: "Power of Discipline", id: "yYzO4jtsb0I" },
+      { title: "Secrets of Millionaire Mindset", id: "maBAsyuOk0k" }
+    ];
+    sampleVideos.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+        <p>${v.title}</p>
+      `;
+      videoContainer.appendChild(card);
+    });
+  </script>
 </body>
 </html>
